@@ -3,4 +3,4 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Deployed by configuration file'
+    return 'Deployed with configuration file'
