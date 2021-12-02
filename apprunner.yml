@@ -1,0 +1,11 @@
+version: 1.0
+runtime: python3 
+build:
+  commands:
+    build:
+      - pip install flask
+       
+run: 
+  command: python -m flask run --host=0.0.0.0
+  network:
+    port: 5000
