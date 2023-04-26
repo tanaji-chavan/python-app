@@ -13,7 +13,7 @@ class TestStringMethods(unittest.TestCase):
 
 	# Returns True if the string is in upper case.
 	def test_upper(self):		
-		self.assertEqual('foo'.upper(), '123')
+		self.assertEqual('foo'.upper(), 'FOO')
 
 	# Returns TRUE if the string is in uppercase
 	# else returns False.
