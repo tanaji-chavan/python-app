@@ -22,6 +22,13 @@ jobs:
           python3 -m coverage report
           python3 -m coverage html
           python3 -m coverage xml
+      - name: Delete pull request on test failure
+        if: failure()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr close --comment "Auto-closing pull request" "${{ github.event.pull_request.number }}"
+      
           
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
