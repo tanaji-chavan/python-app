@@ -19,9 +19,13 @@ jobs:
           pip3 install coverage
           pwd && ls -la
           python3 -m coverage run -m unittest src/main/python/helloworld.py
+          pwd && ls -la
           python3 -m coverage report
+          pwd && ls -la
           python3 -m coverage html
+          pwd && ls -la
           python3 -m coverage xml
+          pwd && ls -la
           
           
       - name: Delete pull request on test failure
