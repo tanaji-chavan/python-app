@@ -27,7 +27,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr close --comment "Auto-closing pull request" "${{ github.event.pull_request.number }}"
+          gh pr block --comment "test failed" "${{ github.event.pull_request.number }}"
       
           
       - name: SonarCloud Scan
