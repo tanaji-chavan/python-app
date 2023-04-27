@@ -14,32 +14,19 @@ jobs:
           python3 -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           
-      - name: Run unit tests
-        run: |
-          python -m pytest --junitxml=junit/test-results.xml --cov=.
-          
       - name: Test with Pytest
         run: |
           pip3 install coverage
           pwd && ls -la
           python3 -m coverage run -m unittest src/main/python/helloworld.py 
-          
-      - name: Upload test results
-        uses: actions/upload-artifact@v2
-        if: success() || failure()
-        with:
-         name: Test results
-         path: |
           python3 -m coverage report
           python3 -m coverage html
           python3 -m coverage xml
           pwd && ls -la
-          gh pr comment ${{ github.event.pull_request.number }} --body "Test results:<br/>$(cat /home/runner/work/python-app/python-app/htmlcov/index.html)"
-          
-          
+      
           
       - name: Delete pull request on test failure
-        if: failure()
+        if: success() || failure()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
