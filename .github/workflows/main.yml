@@ -43,7 +43,7 @@ jobs:
       - name: Delete pull request on test failure
         if: success() || failure()
         env:
-          GITHUB_TOKEN: ${{ secrets.github_token}}
+          GITHUB_TOKEN: ${{ secrets.token}}
         run: |
       
           gh pr comment ${{ github.event.pull_request.number }} --body "Test results:<br/>$(cat /home/runner/work/python-app/python-app/coverage.xml)"
