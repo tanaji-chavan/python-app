@@ -18,7 +18,7 @@ jobs:
         run: |
           pip3 install coverage
           pwd && ls -la
-          python3 -m coverage run -m unittest src/main/python/helloworld.py
+          python3 -m coverage run -m unittest src/main/python/helloworld.py -m coverage report -m coverage html -m coverage xml
           python3 -m coverage report
           python3 -m coverage html
           python3 -m coverage xml
