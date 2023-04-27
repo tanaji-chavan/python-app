@@ -22,7 +22,7 @@ jobs:
           python3 -m coverage report
           python3 -m coverage html
           python3 -m coverage xml
-          gh pr comment ${{ github.event.pull_request.number }} --body "Test results:<br/>$(cat *.html)"
+          
           
       - name: Delete pull request on test failure
         if: failure()
@@ -30,6 +30,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh pr lock  "${{ github.event.pull_request.number }}"
+          gh pr comment ${{ github.event.pull_request.number }} --body "Test results:<br/>$(cat *.html)"
       
           
       - name: SonarCloud Scan
