@@ -27,7 +27,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr lock --comment "test failed" "${{ github.event.pull_request.number }}"
+          gh pr lock  "${{ github.event.pull_request.number }}"
       
           
       - name: SonarCloud Scan
