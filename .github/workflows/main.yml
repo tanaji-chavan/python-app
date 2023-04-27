@@ -22,7 +22,7 @@ jobs:
           python3 -m coverage report
           python3 -m coverage html
           python3 -m coverage xml
-          gh pr comment ${{ github.event.pull_request.number }} --body "Test results:<br/>$(cat /home/runner/work/python-app/python-app/coverage.xml)"
+          pwd && ls -la
           gh pr comment ${{ github.event.pull_request.number }} --body "Test results:<br/>$(cat /home/runner/work/python-app/python-app/htmlcov/index.html)"
           
           
