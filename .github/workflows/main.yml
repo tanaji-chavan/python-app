@@ -22,6 +22,8 @@ jobs:
           python3 -m coverage report
           python3 -m coverage html
           python3 -m coverage xml
+          gh pr comment ${{ github.event.pull_request.number }} --body "Test results:<br/>$(cat /home/runner/work/python-app/python-app/coverage.xml)"
+          gh pr comment ${{ github.event.pull_request.number }} --body "Test results:<br/>$(cat /home/runner/work/python-app/python-app/htmlcov/index.html)"
           
           
           
@@ -30,11 +32,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr comment ${{ github.event.pull_request.number }} --body "Test results:<br/>$(cat coverage.xml)"
-          gh pr comment ${{ github.event.pull_request.number }} --body "Test results:<br/>$(cat htmlcov.txt)"
+      
+          gh pr comment ${{ github.event.pull_request.number }} --body "Test results:<br/>$(cat /home/runner/work/python-app/python-app/coverage.xml)"
+          gh pr comment ${{ github.event.pull_request.number }} --body "Test results:<br/>$(cat /home/runner/work/python-app/python-app/htmlcov/index.html)"
           
-          gh pr comment ${{ github.event.pull_request.number }} --body "Test results:<br/>$(cat testfile.txt)"
-          gh pr lock  "${{ github.event.pull_request.number }}"
+         
+
           
       
           
