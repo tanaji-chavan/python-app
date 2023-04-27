@@ -33,8 +33,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr lock  "${{ github.event.pull_request.number }}"
           gh pr comment ${{ github.event.pull_request.number }} --body "Test results:<br/>$(cat *.html)"
+          gh pr lock  "${{ github.event.pull_request.number }}"
+          
       
           
       - name: SonarCloud Scan
