@@ -19,13 +19,10 @@ jobs:
           pip3 install coverage
           pwd && ls -la
           python3 -m coverage run -m unittest src/main/python/helloworld.py
-          pwd && ls -la
           python3 -m coverage report
-          pwd && ls -la
           python3 -m coverage html
-          pwd && ls -la
           python3 -m coverage xml
-          pwd && ls -la
+          
           
           
       - name: Delete pull request on test failure
@@ -33,7 +30,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr comment ${{ github.event.pull_request.number }} --body "Test results:<br/>$(cat *.html)"
+          gh pr comment ${{ github.event.pull_request.number }} --body "Test results:<br/>$(cat coverage.xml)"
+          gh pr comment ${{ github.event.pull_request.number }} --body "Test results:<br/>$(cat htmlcov.txt)"
+          
+          gh pr comment ${{ github.event.pull_request.number }} --body "Test results:<br/>$(cat testfile.txt)"
           gh pr lock  "${{ github.event.pull_request.number }}"
           
       
