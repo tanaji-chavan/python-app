@@ -27,10 +27,12 @@ jobs:
           
       - name: Request Changes
         if: failure()
-        uses: actions/github-script@v6
+        uses: actions/checkout@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+             gh api repos/pooja03ydv/python-app/branches/smita/protection/required_status_checks/contexts -X POST -F contexts[]=unit-tests
+             gh pr comment ${{ github.event.pull_request.number }} --body "Unit tests failed. Please fix the issues before merging."
              gh pr status -b ${{ github.event.pull_request.number }} -s "Changes requested"
           
       - name: Reject pull request on test failure
