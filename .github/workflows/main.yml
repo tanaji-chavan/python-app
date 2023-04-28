@@ -29,7 +29,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.token }}    
         run: |
-            curl -X POST -H "Authorization: token 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" -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/pooja03ydv/python-app/pulls/19/reviews -d '{"commit_id": "HEAD", "event": "REQUEST_CHANGES", "body": "Unit tests failed"}'
+            curl -X POST -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/pooja03ydv/python-app/pulls/19/reviews -d '{"commit_id": "HEAD", "event": "REQUEST_CHANGES", "body": "Unit tests failed"}'
    
           
  
