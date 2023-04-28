@@ -2,6 +2,7 @@ name: Workflow for Python-CI
 
 on:
  pull_request:
+ workflow_dispatch:
 
 jobs:
   python-ci:
