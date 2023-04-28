@@ -1,0 +1,16 @@
+name: Workflow test
+
+on:
+ workflow_dispatch:
+
+jobs:
+          
+  python-ci:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          DATA=myname
+          gh workflow run "Workflow for Python-CI" --ref features pooja03ydv/python-app -f FILE=$DATA 
