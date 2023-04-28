@@ -24,6 +24,14 @@ jobs:
           python3 -m coverage xml
           pwd && ls -la
           
+          
+      - name: Request Changes
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+             gh pr status -b ${{ github.event.pull_request.number }} -s "Changes requested"
+          
       - name: Reject pull request on test failure
         if: failure()
         env:
