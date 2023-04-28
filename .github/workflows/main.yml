@@ -21,7 +21,7 @@ jobs:
           
       - name: Test with Pytest
         run: |
-          echo $FILE
+          echo ${{ inputs.FILE }}
           pip3 install coverage
           pwd && ls -la
           python3 -m coverage run -m unittest src/main/python/helloworld.py
