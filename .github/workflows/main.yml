@@ -3,6 +3,10 @@ name: Workflow for Python-CI
 on:
  pull_request:
  workflow_dispatch:
+    inputs:
+      FILE: 
+         description: 'file'
+         required: true
 
 jobs:
   python-ci:
